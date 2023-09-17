@@ -12,6 +12,9 @@ function HouseKeeper(yearOfExperience, name, cleaningRebertoire){
 
 var houseKeeper1 = new HouseKeeper(10, "Alyssa", ["living room", "bedroom"])
 
+
+
+
 function MaintenanceStaff(yearOfExperience, name, expertise){
 	this.yearOfExperience = yearOfExperience,
 		this.name= name,
