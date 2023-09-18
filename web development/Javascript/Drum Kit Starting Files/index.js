@@ -8,7 +8,22 @@ for(let i= 0; i < drums ; i++ ){
 function handleClick(onClick) {
 
     var buttonInnerHTML = this.innerHTML;
-    switch (buttonInnerHTML) {
+    makeSound(buttonInnerHTML);        
+}
+
+document.addEventListener("keydown", function(event){
+
+   makeSound(event.key);
+    
+
+console.log(event);
+})
+
+
+function makeSound(key){
+
+
+    switch (key) {
         case "w":    
              const tom1 = new Audio("./sounds/tom-1.mp3");
             tom1.play();
@@ -44,7 +59,5 @@ function handleClick(onClick) {
             
     }
 
+
 }
-
-
-
