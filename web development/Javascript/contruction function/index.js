@@ -4,13 +4,17 @@ var housekeeper = {
 	cleaningRebertoire: ["bathroom", "lobby", "bedroom"]
 };
 
-function HouseKeeper(yearOfExperience, name, cleaningRebertoire){
+function HouseKeeper(yearOfExperience, name, cleaningRebertoire, clean,){
 	this.yearOfExperience = yearOfExperience,
 		this.name = name,
-		this.cleaningRebertoire = cleaningRebertoire
+		this.cleaningRebertoire = cleaningRebertoire,
+		this.clean = function(){
+			alert("housekeeper is cleaning")
+			clean();
+		}
 } 
 
-var houseKeeper1 = new HouseKeeper(10, "Alyssa", ["living room", "bedroom"])
+var houseKeeper1 = new HouseKeeper(10, "Alyssa", ["living room", "bedroom"], clean(),)
 
 
 
