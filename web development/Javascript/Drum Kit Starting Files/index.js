@@ -10,13 +10,14 @@ for(let i= 0; i < drums ; i++ ){
 function handleClick(onClick) {
 
     var buttonInnerHTML = this.innerHTML;
-    makeSound(buttonInnerHTML);        
+    makeSound(buttonInnerHTML);  
+    buttonAnimation(buttonInnerHTML);       
 }
 
 document.addEventListener("keydown", function(event){
 
    makeSound(event.key);
-    
+   buttonAnimation(event.key);
 
 console.log(event);
 })
@@ -62,4 +63,17 @@ function makeSound(key){
     }
 
 
+}
+
+
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+
+    // setTimeout(() => {
+    //     activeButton.classList.remove("pressed");
+    // }, 1000);
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 1000)
 }
