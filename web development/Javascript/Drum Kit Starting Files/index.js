@@ -1,4 +1,6 @@
 
+
+// detecting button press
 const drums = document.querySelectorAll(".drum").length;
 
 for(let i= 0; i < drums ; i++ ){
@@ -19,7 +21,7 @@ document.addEventListener("keydown", function(event){
 console.log(event);
 })
 
-
+// detecting keyboard press
 function makeSound(key){
 
 
