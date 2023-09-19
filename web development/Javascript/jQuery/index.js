@@ -37,5 +37,6 @@ $("button").on("click", function(){
     // $("h1").slideUp();
     // $("h1").slideDown();
     // $("h1").slideToggle();
-    $("h1").animate({opacity: 0.5});
+    // $("h1").animate({opacity: 0.5});
+    $("h1").slideUp().slideDown().animate({opacity: 0.5});
 })
