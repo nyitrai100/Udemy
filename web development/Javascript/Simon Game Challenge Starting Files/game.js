@@ -15,8 +15,8 @@ console.log(gamePattern);
 for (let i = 0; i < buttonColours.length; i++) {
     if(randomChosenColor === buttonColours[i]){
         $("#" + buttonColours[i]).fadeOut(10).fadeIn(100).fadeOut(100).fadeIn(100);
-        var audio = new Audio('./sounds/'+ buttonColours[i] + ".mp3");
-            audio.play();
+        playSound(buttonColours[i]);
+        animatePress(buttonColours[i]);
     }
     
 }
@@ -29,13 +29,27 @@ var gotClicked = $(".btn").on("click", function(){
        var userChosenColour= $(this).attr("id");
        userClickedPattern.push(userChosenColour);
        console.log(userClickedPattern);
-       var audio = new Audio('./sounds/'+ userChosenColour + ".mp3");
-            audio.play();
+       playSound(userChosenColour);
+    
+       animatePress(userChosenColour)
+      
 });
 
 
+function playSound(input){
+    var audio = new Audio('./sounds/'+ input + ".mp3");
+    audio.play();
+}
 
 
 
-
+function animatePress(currentColour){
+    $(".btn").removeClass("pressed");
+    $("#" + currentColour).addClass("pressed");
+    setTimeout(function(){
+        
+        $("#" + currentColour).removeClass("pressed")
+        
+    }, 100);
+}
 
