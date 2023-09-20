@@ -13,7 +13,9 @@ console.log(gamePattern);
 
 for (let i = 0; i < buttonColours.length; i++) {
     if(randomChosenColor === buttonColours[i]){
-        $("#" + buttonColours[i]).fadeOut(10).fadeIn(100).fadeOut(100).fadeIn(100)
+        $("#" + buttonColours[i]).fadeOut(10).fadeIn(100).fadeOut(100).fadeIn(100);
+        var audio = new Audio('./sounds/'+ buttonColours[i] + ".mp3");
+            audio.play();
     }
     
 }
