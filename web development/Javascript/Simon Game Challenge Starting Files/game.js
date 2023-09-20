@@ -19,6 +19,20 @@ for (let i = 0; i < buttonColours.length; i++) {
     }
     
 }
+ 
 }
+ 
+var gotClicked=$(".btn").on("click", function(){
+
+    var userChosenColor = $(this).attr("id");
+    console.log(userChosenColor)
+   
+   
+});
+
+
+
+
+
 
 
