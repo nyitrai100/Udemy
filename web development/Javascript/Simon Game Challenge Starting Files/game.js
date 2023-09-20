@@ -32,7 +32,7 @@ function playPattern(pattern){
         currentIndex++;
 
         if (currentIndex < pattern.length) {
-            setTimeout(animateColor, 500); // Adjust the delay here
+            setTimeout(animateColor, 500); 
         } else {
             sequenceInProgress = false;
         }
