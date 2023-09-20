@@ -1,41 +1,58 @@
 
 gamePattern = [];
 userClickedPattern = [];
-
 buttonColours = ["red", "blue", "green", "yellow"];
-
 var level = 0;
+var started = false;
+var sequenceInProgress = false;
+
 
 function nextSequence(){
+    increaseLevel();
+    userClickedPattern = [];
+    sequenceInProgress = true;
+    var randomNumber = Math.floor(Math.random() * 4);
+    var randomChosenColor = buttonColours[randomNumber];
+    gamePattern.push(randomChosenColor);
 
-increaseLevel();
-var randomNumber = Math.floor(Math.random() * 4);
+    playPattern(gamePattern);
 
-var randomChosenColor = buttonColours[randomNumber];
-
-gamePattern.push(randomChosenColor);
-
-for (let i = 0; i < buttonColours.length; i++) {
-    if(randomChosenColor === buttonColours[i]){
-        $("#" + buttonColours[i]).fadeOut(10).fadeIn(100).fadeOut(100).fadeIn(100);
-        playSound(buttonColours[i]);
-        animatePress(buttonColours[i]);
-    }
-    
-}
    
+}
+
+function playPattern(pattern){
+    var currentIndex = 0;
+
+    function animateColor(){
+        var currentColor= pattern[currentIndex];
+        $("#" + currentColor).fadeOut(100).fadeIn(100);
+        playSound(currentColor);
+        animatePress(currentColor);
+
+        currentIndex++;
+
+        if (currentIndex < pattern.length) {
+            setTimeout(animateColor, 500); // Adjust the delay here
+        } else {
+            sequenceInProgress = false;
+        }
+    }
+
+        animateColor();
 }
  
 
-var gotClicked = $(".btn").on("click", function(){
-        increaseLevel();
+$(".btn").on("click", function(){
+    if (started && !sequenceInProgress){
        var userChosenColour= $(this).attr("id");
        userClickedPattern.push(userChosenColour);
-       console.log(userClickedPattern);
-       playSound(userChosenColour);
-    
-       animatePress(userChosenColour)
-      
+        // var clickedIndexOfColor= buttonColours.indexOf(userChosenColour);
+       
+        playSound(userChosenColour);
+       animatePress(userChosenColour);
+       var clickedIndexOfColor = userClickedPattern.length - 1; 
+        checkAnswer(clickedIndexOfColor);
+    }
 });
 
 
@@ -44,25 +61,54 @@ function playSound(input){
     audio.play();
 }
 
-
-
 function animatePress(currentColour){
-    $(".btn").removeClass("pressed");
     $("#" + currentColour).addClass("pressed");
+
     setTimeout(function(){
-        
         $("#" + currentColour).removeClass("pressed")
-        
     }, 100);
 }
 
-
-
 $(document).keypress(function(){
-    nextSequence();
+    if(!started){
+        started = true;
+        nextSequence();
+    }
 })
 
 function increaseLevel(){
-    $("h1").text("level" + " " + level);
     level++
+    $("h1").text("level " + level);
  } 
+
+
+ function checkAnswer(currentLevel){
+        if(userClickedPattern[currentLevel] !== gamePattern[currentLevel]){
+            console.log("wrong");
+            playSound("wrong");
+            $("body").addClass("game-over");
+
+            setTimeout(function(){
+                $("body").removeClass("game-over");
+            }, 200);
+            $("h1").text("Game Over, Press Any Key to Restart");
+            startOver();
+            return;
+        }
+        if(userClickedPattern.length === gamePattern.length){
+            setTimeout(function(){
+                nextSequence();
+                
+            }, 1000);
+        }
+      
+ }
+
+ function startOver(){
+    level = 0;
+    gamePattern = [];
+    userClickedPattern = [];
+    started = false;
+ }
+
+
