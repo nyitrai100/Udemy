@@ -8,11 +8,7 @@ var level = 0;
 
 function nextSequence(){
 
- function increaseLevel(){
-    $("h1").text("level" + " " + level);
-    level++
- } 
- increaseLevel();
+increaseLevel();
 var randomNumber = Math.floor(Math.random() * 4);
 
 var randomChosenColor = buttonColours[randomNumber];
@@ -32,7 +28,7 @@ for (let i = 0; i < buttonColours.length; i++) {
  
 
 var gotClicked = $(".btn").on("click", function(){
-        
+        increaseLevel();
        var userChosenColour= $(this).attr("id");
        userClickedPattern.push(userChosenColour);
        console.log(userClickedPattern);
@@ -63,13 +59,10 @@ function animatePress(currentColour){
 
 
 $(document).keypress(function(){
-    
     nextSequence();
-    
-    
-    
 })
 
-
-
-level++;
+function increaseLevel(){
+    $("h1").text("level" + " " + level);
+    level++
+ } 
