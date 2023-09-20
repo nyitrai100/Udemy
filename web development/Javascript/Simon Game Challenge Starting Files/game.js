@@ -12,10 +12,11 @@ gamePattern.push(randomChosenColor);
 console.log(gamePattern);
 
 for (let i = 0; i < buttonColours.length; i++) {
-    if (randomChosenColor === buttonColours[i]){
-        $("#" + buttonColours[i]).fadeOut(10).fadeIn(100).fadeOut(100).fadeIn(100);
+    if(randomChosenColor === buttonColours[i]){
+        $("#" + buttonColours[i]).fadeOut(10).fadeIn(100).fadeOut(100).fadeIn(100)
+    }
     
 }
-}}
+}
 
 
