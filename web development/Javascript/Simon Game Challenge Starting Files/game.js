@@ -17,29 +17,28 @@ function nextSequence(){
 
     playPattern(gamePattern);
 
+
    
 }
+function playPattern(pattern) {
+    var delay = 1000; 
+    
+    for (var i = 0; i < pattern.length; i++) {
+        (function (index) {
+            setTimeout(function () {
+                var currentColor = pattern[index];
+                $("#" + currentColor).fadeOut(100).fadeIn(100);
+                playSound(currentColor);
+                animatePress(currentColor);
 
-function playPattern(pattern){
-    var currentIndex = 0;
-
-    function animateColor(){
-        var currentColor= pattern[currentIndex];
-        $("#" + currentColor).fadeOut(100).fadeIn(100);
-        playSound(currentColor);
-        animatePress(currentColor);
-
-        currentIndex++;
-
-        if (currentIndex < pattern.length) {
-            setTimeout(animateColor, 500); 
-        } else {
-            sequenceInProgress = false;
-        }
+                if (index === pattern.length - 1) {
+                    sequenceInProgress = false;
+                }
+            }, delay * i);
+        })(i);
     }
-
-        animateColor();
 }
+
  
 
 $(".btn").on("click", function(){
