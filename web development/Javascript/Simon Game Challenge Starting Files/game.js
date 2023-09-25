@@ -57,7 +57,7 @@ $(".btn").on("click", function(){
 
 function playSound(input){
     var audio = new Audio('./sounds/'+ input + ".mp3");
-    audio.play();
+    audio.play()
 }
 
 function animatePress(currentColour){
