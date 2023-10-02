@@ -10,7 +10,7 @@ import fs from "fs";
 inquirer
   .prompt([ {
     "message": "Type in your URL", 
-    "name": "URL
+    "name": "URL"
     } ])
   .then((answers) => {
     const url = answers.URL;
